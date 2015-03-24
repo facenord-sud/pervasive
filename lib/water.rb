@@ -33,6 +33,6 @@ class Water
 
   # Test si la date donnée est un jour ouvrable (vrai si c'est un jour de congé)
   def holidays?(date)
-    Holidays.on(date, :ch_ne).any? or date.saturday? or date.sunday?
+    Holidays.on(date, :ch_ne).any? or date.saturday? or date.sunday? or date.hour > 18 or date.hour < 7
   end
 end
