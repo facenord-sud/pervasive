@@ -1,16 +1,6 @@
 class Energy
 
-  attr_accessor :sun_energy, :gaz_energy, :tank_heat, :delta_tank, :debit, :delta_t_needed, :tot_watt, :input_sun_water, :lost_temperature
-
-  def initialize
-    @tank_heat = 60.0
-    @sun_energy = 0.0
-    @gaz_energy = 0.0
-    @gained_temperature = 0.0
-    @debit = 0.0
-  end
-
-  SURFCACE_PANEL = 1200.0 # Surface des panneaux en m^2
+ SURFCACE_PANEL = 1200.0 # Surface des panneaux en m^2
   DEBIT_PANEL = 450.0 # l'eau envoyée dans les panneaux en l/h
   MASSIC_HEAT = 4.85 # Chaleur massique de l'eau (J/g) pour 1 C
   MASS_VOLUMIC = 998.0 # Masse voulmique de l'eau
@@ -19,13 +9,31 @@ class Energy
   MAX_DEBIT = 500 # debit max pour le chaufage (l/h)
   MIN_DEBIT = 400 # dbit minum dépend si les gens ferment les radiateurs on non.
   STOP_HEATING = 18.0 # Le température extérieure à laquelle on arrête de chauffer
-  MAX_ENERGY = MAX_DEBIT * MASS_VOLUMIC * MASSIC_HEAT * LOST_TEMPERATURE# L'énergie maximale que peut envoyer le chauffage dans le bâtiment
+  MAX_ENERGY = 500 * 998.0 * 4.85 * 10.0 # L'énergie maximale que peut envoyer le chauffage dans le bâtiment
   LOST_TEMPERATURE = 10.0 # Valeure arbitraire qui dit que l'on perd 10˚C de température pour l'eau qui circule dans le chauffage. Toujours.
 
-  # Nous partons du principe qu'au débit maximal La température de chaque pièce est maintenue à 21C par -25 et que l'eau retournée à perdue 10˚C
+
+
+  attr_accessor :sun_energy, :gaz_energy, :tank_heat, :delta_tank, :debit, :delta_t_needed, :tot_watt, :input_sun_water, :lost_temperature
+
+  def initialize
+   
+    @tank_heat = 60.0
+    @sun_energy = 0.0
+    @gaz_energy = 0.0
+    @gained_temperature = 0.0
+    @debit = 0.0
+  end
+
+  def to_hash
+    { sun_energy: sun_energy, gaz_energy: gaz_energy, tank_heat: tank_heat, delta_tank: delta_tank, debit: debit, delta_t_needed: delta_t_needed, tot_watt: tot_watt, input_sun_water: input_sun_water, lost_temperature: lost_temperature }
+  end
+
+    # Nous partons du principe qu'au débit maximal La température de chaque pièce est maintenue à 21C par -25 et que l'eau retournée à perdue 10˚C
   # À partir de 18˚C le chauffage est arrêté. La fonction pour calculer l'énergie nécessaire pour chauffer le bâtiment en fonction de la température extérieurs est linéeaire
   # chaleure résiduelle pas prise en compte ni le vent.
-  def generate(date, temp_ext, sun)
+  def generate(temp_ext, sun)
+    byebug
     @tot_watt = sun * SURFCACE_PANEL
     @input_sun_water = (@tot_watt / (MASSIC_HEAT * DEBIT_PANEL * MASS_VOLUMIC)).to_f # En 1 heure la température de 450l d'eau s'ect accrue de delta_t
     previous_tank_t = @tank_heat

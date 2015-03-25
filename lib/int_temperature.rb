@@ -11,14 +11,13 @@ class IntTemperature
   end
 
   def generate
+    _variation = variation
     if minus?
-      _variation = variation
-      actual_temp = (last_temperature - _variation < MIN ? last_temperature + _variation : last_temperature - _variation).to_f
-      last_temperature = actual_temp
+      actual_temp = (@last_temperature - _variation < MIN ? @last_temperature + _variation : @last_temperature - _variation).to_f
+      @last_temperature = actual_temp
     else
-       _variation = variation
-      actual_temp = (last_temperature + _variation > MAX ? last_temperature - _variation : last_temperature + _variation).to_f
-      last_temperature = actual_temp
+      actual_temp = (@last_temperature + _variation > MAX ? @last_temperature - _variation : @last_temperature + _variation).to_f
+      @last_temperature = actual_temp
     end
     return last_temperature.to_f
   end

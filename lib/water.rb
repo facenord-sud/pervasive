@@ -29,6 +29,10 @@ class Water
     end
   end
 
+  def to_hash
+    {tank_water_liter: tank, water_buyed: water_buyed}
+  end
+
   private
 
   # Test si la date donnée est un jour ouvrable (vrai si c'est un jour de congé)

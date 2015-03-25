@@ -17,4 +17,11 @@ class Weather
   def to_hash
     {rain: rain, ext_temperature: temperature, wind: wind, sun: sun, date: date_to_s}
   end
+
+  def self.read_csv(name, &block)
+    CSV.foreach(name, encoding: 'ISO-8859-1', col_sep: ';') do |row|
+      next if $. <= 3
+      block.call Weather.new(*row)
+    end
+  end
 end
