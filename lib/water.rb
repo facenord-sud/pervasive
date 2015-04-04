@@ -30,7 +30,7 @@ class Water
   end
 
   def to_hash
-    {tank_water_liter: tank, water_buyed: water_buyed}
+    {tank_water_liter: tank, water_buyed: @buy_water}
   end
 
   private

@@ -32,7 +32,7 @@ class MultiplySensors
       variation(temp, max: 0.5)
     end
     south = each_sensors(:south_temp, 4) do
-      temp = ( weather.date.hour > 8 and weather.date.hour < 17 ? weather.temperature + 2.5 : weather.temperature)
+      temp = ( (weather.date.hour > 8 and weather.date.hour < 17) ? weather.temperature + 2.5 : weather.temperature)
       variation(temp, max: 0.5)
     end
     west = each_sensors(:west_temp, 4) do
@@ -49,6 +49,7 @@ class MultiplySensors
     (0..qty).each do |i|
       sensors["#{name}_#{i}"] = block.call
     end
+    sensors
   end
 
   def plus_minus
