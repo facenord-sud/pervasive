@@ -55,7 +55,7 @@ class Energy
     {total_watt_of_sun: @total_watt_of_sun, watt_available_from_tank: @watt_available_from_tank, watt_needed_for_heating: @watt_needed_for_heating,
      tank_heat: @tank_heat, debit_heater: @debit_heater, diff_t_for_heating: @diff_t_for_heating, t_water_after_gaz: @t_water_after_gaz, t_water_before_gaz: @t_water_before_gaz,
      diff_t_tank_after_heating: @diff_t_tank_after_heating, diff_t_tank_with_sun_water: @diff_t_tank_with_sun_water,
-     t_water_out_panels: @t_water_out_panels, watt_of_gaz: @watt_of_gaz}
+     t_water_out_panels: @t_water_out_panels, watt_of_gaz: @watt_of_gaz, watt_of_sun: @watt_of_sun}
   end
 
     # Nous partons du principe qu'au débit maximal La température de chaque pièce est maintenue à 21C par -25 et que l'eau retournée à perdue 10˚C
@@ -93,6 +93,7 @@ class Energy
     @watt_needed_for_heating = to_watt @joule_needed_for_heating
     @watt_available_from_tank = to_watt available_tank_joule_for_debit
     @watt_of_gaz = -1 * to_watt(needed_joule_gaz)
+    @watt_of_sun = ((available_tank_joule_for_debit > @joule_needed_for_heating) ? to_watt(@joule_needed_for_heating) : to_watt(available_tank_joule_for_debit))
   end
 
   private
