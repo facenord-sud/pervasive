@@ -68,7 +68,7 @@ namespace :generate do
     energy = Energy.new
     m_sensors = MultiplySensors.new
     Dir.glob('datas/weather/meteo-cressier-*').each do |file|
-      CSV.foreach(File.join(File.dirname(__FILE__), file), encoding: 'ISO-8859-1', col_sep: ';') do |row|
+      CSV.foreach(File.join(File.dirname(__FILE__), '..',file), encoding: 'ISO-8859-1', col_sep: ';') do |row|
         next if $. <= 3
         weather = Weather.new(*row)
         water.generate(weather.rain, weather.date)
