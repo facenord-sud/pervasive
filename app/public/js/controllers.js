@@ -103,12 +103,11 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
             axes: {
                 x: {key: 'x', labelFunction: function(value) {return value;}, type: 'date', ticks: 2},
                 y: {type: 'linear', min: min_temperature, max: max_temperature.value, ticks: 5},
-                y2: {type: 'linear', min: -10000, max: max_energy, ticks: 5}
+                y2: {type: 'linear', min: -500, max: 500, ticks: 5}
             },
             series: [
                 {y: 'value', color: 'steelblue', thickness: '1px', type: 'linear', striped: true, label: 'Outside temperature'},
                 {y: "value_sun", label: "Sun (W/h)", color: "green", type: "column", axis: "y2"},
-                {y: "value_energy", label: "Total energy (W/h)", color: "red", type: "area", axis: "y2"},
                 {y: "value_gaz_energy", label: "Energy from the gaz heater (W/h)", color: "black", type: "area", axis: "y2"}
             ],
             lineMode: 'linear',
