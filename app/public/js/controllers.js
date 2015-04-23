@@ -1,10 +1,14 @@
 var pervasiveController = angular.module('pervasiveController', []);
 
 pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', function($scope, client, esFactory) {
-    var data_size = 1000;
+    var data_size = 500;
     var from_date = "2008-11-01T00:00:00";
     var to_date = "2015-01-01T00:00:00";
-    var range_hours = (Math.abs(new Date(to_date) - new Date(from_date)) / 36e5) / data_size;
+    var range_hours = Math.round((Math.abs(new Date(to_date) - new Date(from_date)) / 36e5) / data_size);
+    var range = "";
+    if(range_hours > 24) {
+        range = Math.round(range_hours/24).toString() + "d"
+    }
     console.log(Math.abs(to_date - from_date) / 36e5);
     client.search({
         index: 'pervasive',
@@ -15,7 +19,7 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                 data_over_time: {
                     date_histogram: {
                         field: "date",
-                        interval: range_hours + "h"
+                        interval: range
                     },
                     aggs: {
                         avg_temperature: {
@@ -28,9 +32,9 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                                 field: "sun"
                             }
                         },
-                        avg_energy: {
+                        avg_sun_energy: {
                             avg: {
-                                field: "watt_needed_for_heating"
+                                field: "total_watt_of_sun"
                             }
                         },
                         avg_gaz_energy: {
@@ -71,6 +75,7 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
         var hits = aggs.data_over_time.buckets;
         $scope.data = [];
         var max_energy = 0;
+        var max_gaz_energy = 0;
         var min_temperature = 0;
         var max_temperature = 0;
         var temperature = 0;
@@ -79,11 +84,11 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
             if (max_energy < hits[i].avg_sun.value) {
                 max_energy = hits[i].avg_sun.value
             }
-            if(max_energy < hits[i].avg_energy.value) {
-                max_energy = hits[i].avg_energy.value
+            if(max_energy < hits[i].avg_sun_energy.value) {
+                max_energy = hits[i].avg_sun_energy.value
             }
-            if(max_energy < hits[i].avg_gaz_energy.value) {
-                max_energy = hits[i].avg_gaz_energy.value
+            if(max_gaz_energy < hits[i].avg_gaz_energy.value) {
+                max_gaz_energy = hits[i].avg_gaz_energy.value
             }
             if(min_temperature > temperature) {
                 min_temperature = temperature
@@ -95,20 +100,22 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                 x: new Date(hits[i].key_as_string),
                 value: temperature,
                 value_sun: hits[i].avg_sun.value,
-                value_energy: hits[i].avg_energy.value,
-                value_gaz_energy: - parseInt(hits[i].avg_gaz_energy.value)
+                value_gaz_energy: - parseInt(hits[i].avg_gaz_energy.value),
+                value_sun_energy: parseInt(hits[i].avg_sun_energy.value) / 500
             };
         }
+        max_energy = max_energy / 500;
         $scope.options = {
             axes: {
                 x: {key: 'x', labelFunction: function(value) {return value;}, type: 'date', ticks: 2},
                 y: {type: 'linear', min: min_temperature, max: max_temperature.value, ticks: 5},
-                y2: {type: 'linear', min: -500, max: 500, ticks: 5}
+                y2: {type: 'linear', min: - max_gaz_energy, max: max_energy, ticks: 5}
             },
             series: [
                 {y: 'value', color: 'steelblue', thickness: '1px', type: 'linear', striped: true, label: 'Outside temperature'},
-                {y: "value_sun", label: "Sun (W/h)", color: "green", type: "column", axis: "y2"},
-                {y: "value_gaz_energy", label: "Energy from the gaz heater (W/h)", color: "black", type: "area", axis: "y2"}
+                {y: "value_sun", label: "Sun (W/h)", color: "green", type: "column", axis: "y2", visible: false},
+                {y: "value_sun_energy", label: "Energy from the sun heater (W/h)", color: "red", type: "column", axis: "y2"},
+                {y: "value_gaz_energy", label: "Energy from the gaz heater (W/h)", color: "black", type: "column", axis: "y2"}
             ],
             lineMode: 'linear',
             tension: 0.7,
