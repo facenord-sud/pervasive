@@ -132,3 +132,6 @@
         width: 100%;
     }
 }
+#collapse-data {
+  cursor: pointer;
+}

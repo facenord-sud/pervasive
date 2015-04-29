@@ -4,31 +4,36 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
   $scope.isCollapsed = false;
   $scope.end_date = new Date();
   $scope.start_date = moment().subtract(1, 'year').toDate();
-  $scope.printDateSelection = 'From: ' + $scope.start_date.getDay().toString();
-  $scope.isActive = function(type) {
-    var changeDate = $scope.end_date;
-    changeDate.setYear($scope.end_date.getYear() -1 );
-    if(type == 'year' && changeDate == $scope.start_date) {return true}
-    changeDate.setMonth($scope.end_date.getMonth() -1 );
-    if(type == 'month' && changeDate == $scope.start_date) {return true}
-    return (type=='day' && ($scope.end_date - $scope.start_date) == 1)||
-      (type == 'week' && ($scope.end_date - $scope.start_date) == 7) ||
-      type=='custom';
+  var is_date_interval = function(interval, unit) {
+      var start_date = moment($scope.start_date);
+      var end_date = moment($scope.end_date);
+      var diff_time = end_date - start_date;
+      var should_start_date = moment($scope.end_date).subtract(interval, unit);
+      return diff_time == (end_date - should_start_date)
+    }
+  $scope.isActive = function(interval, type) {
+    if(type == 'custom' && !is_date_interval(1, 'day') && !is_date_interval(7, 'day') && !is_date_interval(1, 'month') && !is_date_interval(1, 'year')) {
+      return 'active'
+    } else {
+      return (is_date_interval(interval, type) ? 'active' : '');
+    }
   };
   var query = function(from_date, to_date) {
-//    from_date = moment(from_date).format("YYYY-MM-DDT00:00:00").toString();
-//    to_date = moment(to_date).format("YYYY-MM-DDT00:00:00").toString();
-    var date1 = from_date;
-    var date2 = to_date;
-    to_date = "2014-01-01";
-    from_date = "2009-01-01";
-    console.log(date1 == from_date);
-    console.log(date1);
+    from_date = moment(from_date).format("YYYY-MM-DDT00:00:00")
+    to_date = moment(to_date).format("YYYY-MM-DDT00:00:00")
     var data_size = 500;
     var range_hours = Math.round((Math.abs(new Date(to_date) - new Date(from_date)) / 36e5) / data_size);
     var range = "";
     if(range_hours > 24) {
         range = Math.round(range_hours/24).toString() + "d"
+    } else if(range_hours > 18) {
+      range = "1d";
+    } else if(range_hours > 6) {
+      range = "12h";
+    } else if(range_hours > 3) {
+      range = "3h"
+    } else {
+      range = "1h";
     }
     client.search({
         index: 'pervasive',
@@ -147,12 +152,25 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
         console.log(error)
     });
   };
-  console.log($scope.start_date);
-  query("2009-01-01", "2014-01-01");
-//  $scope.$watch('start_date', function() {
-//    query($scope.start_date, $scope.end_date);
-//  });
-//  $scope.$watch('end_date', function() {
-//    query($scope.start_date, $scope.end_date);
-//  });
+  var watch_changes = function() {
+    var print_date = function() {
+      if($scope.start_date > $scope.end_date) {
+        $scope.start_date = moment($scope.end_date).subtract(1, 'day');
+      }
+      query($scope.start_date, $scope.end_date);
+      if(is_date_interval(1, 'day')) {return 'of last day'}
+      else if(is_date_interval(7, 'day')) {return 'of last week'}
+      else if(is_date_interval(1, 'month')) { return 'of last month'}
+      else if(is_date_interval(1, 'year')) {return 'of last year'}
+      else {return "from: " + moment($scope.start_date).format("Do MMMM YYYY") + " to " + moment($scope.end_date).format("Do MMMM YYYY")}
+    }
+    $scope.printDateSelection = 'Data selection ' + print_date();
+  };
+//  query($scope.start_date, $scope.end_date);
+  $scope.$watch('start_date', function() {
+    watch_changes();
+  });
+  $scope.$watch('end_date', function() {
+    watch_changes();
+  });
 }]);
