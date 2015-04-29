@@ -1,15 +1,35 @@
 var pervasiveController = angular.module('pervasiveController', []);
 
 pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', function($scope, client, esFactory) {
+  $scope.isCollapsed = false;
+  $scope.end_date = new Date();
+  $scope.start_date = moment().subtract(1, 'year').toDate();
+  $scope.printDateSelection = 'From: ' + $scope.start_date.getDay().toString();
+  $scope.isActive = function(type) {
+    var changeDate = $scope.end_date;
+    changeDate.setYear($scope.end_date.getYear() -1 );
+    if(type == 'year' && changeDate == $scope.start_date) {return true}
+    changeDate.setMonth($scope.end_date.getMonth() -1 );
+    if(type == 'month' && changeDate == $scope.start_date) {return true}
+    return (type=='day' && ($scope.end_date - $scope.start_date) == 1)||
+      (type == 'week' && ($scope.end_date - $scope.start_date) == 7) ||
+      type=='custom';
+  };
+  var query = function(from_date, to_date) {
+//    from_date = moment(from_date).format("YYYY-MM-DDT00:00:00").toString();
+//    to_date = moment(to_date).format("YYYY-MM-DDT00:00:00").toString();
+    var date1 = from_date;
+    var date2 = to_date;
+    to_date = "2014-01-01";
+    from_date = "2009-01-01";
+    console.log(date1 == from_date);
+    console.log(date1);
     var data_size = 500;
-    var from_date = "2008-11-01T00:00:00";
-    var to_date = "2015-01-01T00:00:00";
     var range_hours = Math.round((Math.abs(new Date(to_date) - new Date(from_date)) / 36e5) / data_size);
     var range = "";
     if(range_hours > 24) {
         range = Math.round(range_hours/24).toString() + "d"
     }
-    console.log(Math.abs(to_date - from_date) / 36e5);
     client.search({
         index: 'pervasive',
         type: 'datas',
@@ -126,4 +146,13 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
     }).catch(function(error) {
         console.log(error)
     });
+  };
+  console.log($scope.start_date);
+  query("2009-01-01", "2014-01-01");
+//  $scope.$watch('start_date', function() {
+//    query($scope.start_date, $scope.end_date);
+//  });
+//  $scope.$watch('end_date', function() {
+//    query($scope.start_date, $scope.end_date);
+//  });
 }]);

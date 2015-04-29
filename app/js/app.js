@@ -1,4 +1,4 @@
-var pervasiveApp = angular.module('pervasiveApp', ['ngRoute', 'elasticsearch', 'n3-line-chart', 'pervasiveController']);
+var pervasiveApp = angular.module('pervasiveApp', ['ngRoute', 'elasticsearch', 'n3-line-chart', 'ui.bootstrap', 'pervasiveController']);
 
 pervasiveApp.config(['$routeProvider',
     function($routeProvider) {
@@ -9,6 +9,9 @@ pervasiveApp.config(['$routeProvider',
             redirectTo: '/'
         });
     }]);
+pervasiveApp.config(['$locationProvider', function($locationProvider) {
+    $locationProvider.html5Mode(true);
+}]);
 
 pervasiveApp.service('client', ['esFactory', function (esFactory) {
     return esFactory({
