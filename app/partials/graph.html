@@ -15,10 +15,10 @@
             <li dropdown>
                 <a href="#" dropdown-toggle>{{printDateSelection}} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li class="{{isActive(1, 'day')}}" ng-click="endDate=new Date(); startDate = moment().subtract(1, 'day').toDate()"><a href="#">Last day</a></li>
-                    <li class="{{isActive(7, 'day')}}"><a href="#">Last week</a></li>
-                    <li class="{{isActive(1, 'month')}}"><a href="#">Last month</a></li>
-                    <li class="{{isActive(1, 'year')}}"><a href="#">Last year</a></li>
+                    <li class="{{isActive(1, 'day')}}" ng-click="selectRange(1, 'day')"><a href="#">Last day</a></li>
+                    <li class="{{isActive(7, 'day')}}" ng-click="selectRange(7, 'day')"><a href="#">Last week</a></li>
+                    <li class="{{isActive(1, 'month')}}" ng-click="selectRange(1, 'month')"><a href="#">Last month</a></li>
+                    <li class="{{isActive(1, 'year')}}" ng-click="selectRange(1, 'year')"><a href="#">Last year</a></li>
                     <li class="divider"></li>
                     <li class="{{isActive(0, 'custom')}}"><a href="#" ng-click="isCollapsed = !isCollapsed">Custom selection</a></li>
                 </ul>
@@ -27,10 +27,11 @@
     </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
   </nav>
-<div collapse="isCollapsed">
+<div collapse="!isCollapsed">
   <div class="well well-lg">
     <div class="container">
-      <h3>Custom selection <span id="collapse-data" class="glyphicon glyphicon-chevron-up pull-right" ng-click="isCollapsed = !isCollapsed" href="#"></span></h3>
+      <p><span id="collapse-data" class="glyphicon glyphicon-chevron-up pull-right" ng-click="isCollapsed = !isCollapsed" href="#"></span></p>
+      <h3>Custom selection</h3>
       
       <div class="row">
         <div class="col-lg-6">
@@ -42,15 +43,34 @@
       </div>
     </div>
   </div>
-</div><div class="container-fluid">
-  <div class="section group">
-    <div class="col span_12_of_12">
-        <linechart data="data" options="options" mode="" width="" height=""></linechart>
+</div>
+  <div class="container-fluid">
+    <h3 ng-hide="data">
+      Sorry, no data
+    </h3>
+    <div ng-show="data">
+      <div class="section group">
+        <div class="col span_12_of_12">
+            <h3>Energy for the heating</h3>
+          <p>Represent the energy used for heating in comparaison to the outside temperature. The red bars represent the the heating energy from the sun. The building has solar panel which are heating water which is used for heating. The black bars represent the heating energy from the gaz heater. It is only used to comppensate when the sun heater is not strong enough.</p>
+            <linechart data="data" options="options" mode="" width="" height=""></linechart>
+        </div>
+      </div>
+      <hr>
+      <div class="section group">
+        <div class="col span_12_of_12">
+          <h3>Water usage for the toilets</h3>
+          <p>Write an explication</p>
+          <linechart data="data_rain" options="options_rain" mode="" width="" height=""></linechart>
+        </div>
+      </div>
+      <hr>
+      <div class="section group">
+        <div class="col span_12_of_12">
+          <h3>Energy used for cooling</h3>
+          <p>Write an explication</p>
+          <linechart data="data_cooling" options="options_cooling" mode="" width="" height=""></linechart>
+        </div>
+      </div>
     </div>
-    <div class="col span_12_of_12">
-        <p>
-            Represent the energy used for heating in comparing to the outside temperature  and the sun.
-        </p>
-    </div>
-  </div>
 </div>
