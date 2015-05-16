@@ -24,6 +24,20 @@
                 </ul>
             </li>
         </ul>
+      <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+              <label for="gaussian">Select Gaussian weight</label>
+              <select name="gaussian" id="gaussian" ng-model="gaussian" ng-change="updateGraph()" class="form-control">
+                  <option value="2">2</option>
+                  <option value="5">5</option>
+                  <option selected value="10">10</option>
+                  <option value="15" selected="selected">15</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+              </select>
+          </div>
+
+      </form>
     </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
   </nav>
@@ -60,15 +74,23 @@
       <div class="section group">
         <div class="col span_12_of_12">
           <h3>Water usage for the toilets</h3>
-          <p>Write an explication</p>
+          <p>
+              Represents the water consumption for the toilets. The water for the toilets is from the rain and is stocked in a tank.
+              In blue the precipitation in mm/hour. In red the water level in the water tank in hectoliters.
+              In black, the water bought to complete the water from the rain. We can observe that after a period of rain, the level in the water tank decrease fast and it is necessary to bought water.
+          </p>
           <linechart data="data_rain" options="options_rain" mode="" width="" height=""></linechart>
         </div>
       </div>
       <hr>
       <div class="section group">
         <div class="col span_12_of_12">
-          <h3>Energy used for cooling</h3>
-          <p>Write an explication</p>
+          <h3>Energy cost</h3>
+          <p>
+              Represents the cost of the energy coming from non renewable sources. In our case, the bought water and the gaz for heating.
+              In red, we have the price of the energy in francs per hour, compared to the precipitations and the outside temperature.
+
+          </p>
           <linechart data="data_price" options="options_price" mode="" width="" height=""></linechart>
         </div>
       </div>

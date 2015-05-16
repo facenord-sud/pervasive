@@ -1,6 +1,9 @@
 var pervasiveController = angular.module('pervasiveController', []);
 
 pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', function ($scope, client, esFactory) {
+    if($scope.gaussian == undefined) {
+        $scope.gaussian = 10
+    }
     $scope.isCollapsed = false;
     $scope.end_date = new Date();
     $scope.selectRange = function (interval, unit) {
@@ -111,17 +114,17 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
             var hits = response.aggregations.data_over_time.buckets;
             var gaussed_results = $.Gauss(hits,
                 ['avg_temperature.value', 'avg_sun.value', 'avg_sun_energy.value', 'avg_gaz_energy.value', 'avg_rain.value', 'avg_used_water.value', 'avg_buyed_water.value'],
-                ['outside_temperature', 'sunshine', 'sun_energy', 'gaz_energy', 'rain', 'used_water', 'bought_water'], true);
+                ['outside_temperature', 'sunshine', 'sun_energy', 'gaz_energy', 'rain', 'used_water', 'bought_water'],
+                true, $scope.gaussian);
             var items = gaussed_results.items;
             $scope.data = [];
             $scope.data_rain = [];
             $scope.data_price = [];
-            var max_energy = gaussed_results.max_sun_energy / 500;
             var min_temperature = 0;
             var temperature = 0;
             var price = 0;
             for (var i = 0; i < items.length; i++) {
-                var x_date = new Date(hits[i + 2].key_as_string);
+                var x_date = new Date(hits[i + gaussed_results.weight_length].key_as_string);
                 temperature = items[i].outside_temperature;
                 if (min_temperature > temperature) {
                     min_temperature = temperature
@@ -135,7 +138,7 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                 };
                 $scope.data_rain[i] = {
                     xASD: x_date,
-                    rain: hits[i + 2].avg_rain.value,
+                    rain: hits[i + gaussed_results.weight_length].avg_rain.value,
                     used_water: items[i].used_water / 100,
                     buyed_water: - items[i].bought_water
                 };
@@ -310,4 +313,7 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
     $scope.$watch('end_date', function () {
         watch_changes();
     });
+    $scope.updateGraph = function() {
+        watch_changes();
+    }
 }]);
