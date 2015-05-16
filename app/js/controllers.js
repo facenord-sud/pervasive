@@ -108,19 +108,18 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                 }
             }
         }).then(function (response) {
-            var aggs = response.aggregations;
-            var hits = aggs.data_over_time.buckets;
+            var hits = response.aggregations.data_over_time.buckets;
             var gaussed_results = $.Gauss(hits,
                 ['avg_temperature.value', 'avg_sun.value', 'avg_sun_energy.value', 'avg_gaz_energy.value', 'avg_rain.value', 'avg_used_water.value', 'avg_buyed_water.value'],
                 ['outside_temperature', 'sunshine', 'sun_energy', 'gaz_energy', 'rain', 'used_water', 'bought_water'], true);
             var items = gaussed_results.items;
             $scope.data = [];
             $scope.data_rain = [];
+            $scope.data_price = [];
             var max_energy = gaussed_results.max_sun_energy / 500;
-            console.log(max_energy);
             var min_temperature = 0;
             var temperature = 0;
-            var buyed_water = 0;
+            var price = 0;
             for (var i = 0; i < items.length; i++) {
                 var x_date = new Date(hits[i + 2].key_as_string);
                 temperature = items[i].outside_temperature;
@@ -129,7 +128,7 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                 }
                 $scope.data[i] = {
                     x: x_date,
-                    value: items[i].outside_temperature,
+                    value: temperature,
                     value_sun: items[i].sunshine,
                     value_gaz_energy: - items[i].gaz_energy,
                     value_sun_energy: items[i].sun_energy / 500
@@ -140,6 +139,13 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                     used_water: items[i].used_water / 100,
                     buyed_water: - items[i].bought_water
                 };
+                price = ((items[i].bought_water / 1000) * 2) + ((items[i].gaz_energy / 1000) * 0.9);
+                $scope.data_price[i] = {
+                    x: x_date,
+                    price: price,
+                    temperature: temperature,
+                    rain: hits[i + 2].avg_rain.value
+                };
             }
             $scope.options = {
                 axes: {
@@ -148,8 +154,8 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                             return moment(value).format("DD.MM.YYYY hh:mm:ss");
                         }, type: 'date', ticks: 2
                     },
-                    y: {type: 'linear', min: min_temperature, max: gaussed_results.max_outside_temperature, ticks: 5},
-                    y2: {type: 'linear', min: - gaussed_results.max_gaz_energy, max: max_energy, ticks: 5}
+                    y: {type: 'linear', ticks: 5},
+                    y2: {type: 'linear', ticks: 5}
                 },
                 series: [
                     {
@@ -194,8 +200,8 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                             return moment(value).format("DD.MM.YYYY hh:mm:ss");
                         }, type: 'date', ticks: 2
                     },
-                    y: {type: 'linear', min: -1, max: 1, ticks: 10},
-                    y2: {type: 'linear', min: - gaussed_results.max_bought_water, max: gaussed_results.max_used_water / 100, ticks: 5}
+                    y: {type: 'linear', min: -1.5, ticks: 10},
+                    y2: {type: 'linear', ticks: 5}
                 },
                 series: [
                     {
@@ -216,6 +222,47 @@ pervasiveController.controller('GraphCtrl', ['$scope', 'client', 'esFactory', fu
                         axis: "y2"
                     },
                     {y: "buyed_water", label: "Additional water (l)", color: "black", type: "column", axis: "y2"}
+                ],
+                tooltip: {
+                    formatter: function (x, y, series) {
+                        return y + " at " + moment(x).format("DD.MM.YYYY hh:mm:ss");
+                    }
+                },
+                lineMode: 'linear',
+                tension: 0.7,
+                drawLegend: true,
+                drawDots: true,
+                columnsHGap: 5
+            };
+            $scope.options_price = {
+                axes: {
+                    x: {
+                        key: 'x', labelFunction: function (value) {
+                            return moment(value).format("DD.MM.YYYY hh:mm:ss");
+                        }, type: 'date', ticks: 2
+                    },
+                    y: {type: 'linear', ticks: 10},
+                    y2: {type: 'linear', ticks: 5}
+                },
+                series: [
+                    {
+                        y: 'rain',
+                        color: 'steelblue',
+                        thickness: '1px',
+                        type: 'column',
+                        striped: true,
+                        label: 'Precipitations (mm/h)'
+                    },
+                    {
+                        y: "price",
+                        label: "Price in franks for the energy used",
+                        color: "red",
+                        type: "linear",
+                        striped: true,
+                        drawDots: true,
+                        axis: "y2"
+                    },
+                    {y: "temperature", label: "Temperature (°C)", color: "blue", type: "linear", axis: "y2"}
                 ],
                 tooltip: {
                     formatter: function (x, y, series) {
