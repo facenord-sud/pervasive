@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Description of the building}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Approach}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Simulation of the building}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Storing the data}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Graphing the data}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Technologies used}{subsection.2.3}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Low-pass Gaussian filter}{subsection.2.3}% 8
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Implementation}{subsection.2.3}% 9
+\BOOKMARK [1][-]{section.3}{Discussion of the data}{}% 10
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Future work}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Acknowledgments}{}% 13
