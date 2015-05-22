@@ -89,53 +89,61 @@ Thibaut Mauron\\
 \keywords{Data representation, Web technologies, Graphs} % NOT required for Proceedings
 
 \section{Introduction}
-The Federal Statistic Office (FSO) building is an interesting example of what an actual Smart building looks like. Build in 2000 it is designated to be energy efficient by using renewable energies and by monitoring many parameters. To save energy, to use the biggest part as possible of renewable energy and still to provide a comfortable working place, many parameters are monitored in real time:
+The Federal Statistic Office (FSO) building is an interesting example of what an actual smart building looks like. Build in 2000 it is designated to be energy efficient by using renewable energies and by monitoring many parameters. To save energy, they use much as possible renewable energy while providing a comfortable working place. Parameters that are monitored in real time, are shown in the following list:
 
 \begin{itemize}
-\item interior temperature in each rooms
-\item outside temperature, sunlight and wind in each stages
-\item level of the different available energies
-\item consumption of the different used energies
+\item Interior temperature in each rooms
+\item Outside temperature, sunlight and wind on each floors
+\item Level of the different available energies
+\item Consumption of the different used energies
+\item State of the building like: knowing which windows are open or not or the position of each stores
 \end{itemize}
  
-From this short list, we see that a lot of data are collected in a short period of time and raw data say nothing to the building manager. In consequence, we need a tool to represent the data in a readable and usable format.
+From this list, we see that a lot of data are collected in a short period of time and raw data say nothing to the building manager. In consequence, we need a tool to represent the data in a readable and usable format.
 
 Such a tool already exists and was created in the same time as the FSO building. Basically, it is composed of two parts: 
 
 \begin{enumerate}
 \item A software running on a specialized computer which receive live data, create report and draw graphs.
-\item A computer which stores the data
+\item A computer which stores the data in plain text format without known backup
 \end{enumerate}
 
-The software produces a set of graphs and reports but it is impossible to do new graph or to configure it for a new usage. For example, analysing the energy consumed compared to the outside temperature, the sunlight and the rain is impossible. It is perfect for the building manager to monitor it, but nothing else. Because the software must be run a specialized computer, it is really difficult to share graphs and reports otherwise as printing them!
+The software produces a set of graphs and reports but it is impossible to do new graphs or configure it for new usage. For example, analysing the energy consumed compared to the outside temperature, the sunlight and the rain. It is possible for the building manager to monitor the existing sensor data, but not to take overall conclusions.Since the software runs on a specialized computer, it is really difficult to share or transmit graphs or reports in another manner than printing them!
 
-The way the data is stored is a \enquote{funny story}. At the beginning of the semester we had a meeting with  ???, one of the building manger to receive an extract of the stored data. But the evening before our meeting ??? did a hearth attack (he went to the hospital and now goes better). In consequence, nobody else has access to the stored data because ??? was the only person to have access to the computer. Moreover, the data seems to be stored in plain text format to files with no backup.
 
-Our goals for this project is to give access to everybody to the data of the building, with a focus on the energy management. As we see it before, raw data is not sufficient to have an idea how the building consume energy. In consequence, we need:
+The way, how the data is stored is an unusual story. At the beginning of the semester we had a meeting with  ???, one of the building manger to receive an extract of the stored data. But the evening before our meeting ??? did have a hearth attack (he went to the hospital and nfeels better now). In consequence, nobody else had access to the stored data because ??? was the only person to have granted access to the single computer holding that data.
+
+Our goals for this project is to give anybody access to the data describing the building state, in regard to the energy consumption. As above, raw data is not sufficient to describe how energy the building consumes. In consequence, we need:
 
 \begin{itemize}
-\item to analyze the data and to represent it into graphs
-\item Manage that every person with a screen terminal (smartphone, personal computer, etc) and a Internet connection can visualize the data of the FSO building from everywhere
-\item Define which kind of graph is representative for our use case, select the right data and comment it. Indeed, just generating dozen of graphs and make it available is not sufficient, and a not experiment user will be lost and unable to interpret it
-\item The user must also be able to visualize data in the past and to select the period of time he which to visualize
-\item State of the building like: knowing which windows are open or not or the position of each stores
+\item To analyze the data and to represent it into graphs
+\item Manage that every person with a screen terminal (Smartphone, personal computer, etc) and a Internet connection can visualize the data of the FSO building from everywhere
+\item Define which kind of graph is representative for our use case, select the right data and comment it. Indeed, just generating dozen of graphs and make them available is not sufficient, since a not experimented user will be lost and unable to interpret them
+\item The user must also be able to visualize data in the past in a time interval he or she is interested in
 \end{itemize}
 
-Another point of giving access to everybody is that every person how want to build a tool for representing the data can do it. To fill such a goal, the data must be stored on a database, accessible from Internet and we can query the database. Because, we are dealing with a lot of data, basic statistical operations should be able to be performed on the database.
+The interest behind giving access to that data to everybody is, that every person who wants to build a tool for representing the data can do it. To fulfil such a goal, the data must be stored on a database, accessible from the Internet through queries. Since, we are dealing with a lot of data, basic statistical operations should be able to be performed on the database.
 
-Finally, this project must not provide a complete solution, but to demonstrate how we could handle such a case, with which tools and how difficult it is.
+Finally, this project will not provide a complete solution, but demonstrate how we could handle such a case, which tools we used and how difficult the task was.
 
-According to our goals, we can conclude that the existing tool is not appropriate with what we want to realize. In the chapter \ref{approach} we will discuss how the tools must be according to our goals and how we did it. In the chapter \ref{discuss} we will briefly discuss on what our generated graphs represent and how they can be interpreted. Finally, in the chapter \ref{conclusion}, we will have a critic look at our work and to discuss about future work (\ref{future_work}).
+According to our goals, we can conclude that the existing tool is not appropriate with what we want to realize. In the chapter \ref{approach} we will discuss how the tools must be used and configured according to our goals. In the chapter \ref{discuss} we will briefly discuss what our generated graphs represent and how they can be interpreted. Finally, in the chapter \ref{conclusion}, we will have a critic look at our work and discuss future outlook (\ref{future_work}).
 
 \subsection{Description of the building}
 The FSO building is composed of two different buildings: A tower, 60 meters high and the main building, four stages high with a flat roof. On the main building, rain water is collected and stocked in a tank (T1). The tank T1 is alimenting the flush of all the toilets of the two buildings. When the level of the tank T1 is under 20\%, water is bought to fill the tank up to 20\%. On the roof of the main building, $1200 m^2$ of solar panels are placed to warm the water of another of $25000m^3$ tank (T2). The heat of T2 is used to heat the building, when T2 is providing not enough heat, a gas heater is used to maintain a comfortable temperature. The building has nice system of ventilation based on the principle of convection, the high of the tower and a second wall over the windows. We do not explain it more, because we do not will treat the ventilation in the following of the report.
 
-A lot of parameters are monitored, collected and send to a specialized computer. The figure ??? gives an overview.
+A lot of parameters are monitored, collected and send to a specialized computer. The figure \ref{fig1} gives an overview. The boxes in green are the data collected and used in our project, in red are the data collected.
+
+\begin{figure}
+\label{fig1}
+\epsfig{file=graph.eps}
+\caption{Overview of data produced by the FSO building}
+\end{figure}
+
 \section{Approach}
 \label{approach}
-According to our goals of the previous section we decide to use Web technologies to create our tool and giving access to the stored data. Indeed, nowadays, every screen terminal, has access to Internet from almost everywhere and has a Web browser. With HTML5, SVG, CSS3 and Javascript libraries it is now easy to create modern and responsive applications with a great user experience. Moreover, there exists plenty of Javascript and SVG libraries to generate graphs.
+According to our goals of the previous section we decide to use Web technologies to create our tool and giving access to the stored data. Indeed, nowadays, every screen terminal, has access to Internet from almost everywhere and has a Web browser. With \texttt{HTML5}, \texttt{SVG}, \texttt{CSS3} and \texttt{Javascript} libraries it is now easy to create modern and responsive applications with a great user experience. Moreover, there exists plenty of \texttt{Javascript} and \texttt{SVG} libraries to generate graphs.
 
-The choice of the database system is more difficult. From the course « Big Data » of Prof. ??? we learned that a database system exists for almost every use cases. In our case, we want to be able to save a big amount of data who will grow among the time, to perform statistical queries and be easily accessible from every system. In consequence, we choose ElasticSearch (ES). Disadvantaged and advantages of ES are given in the section \ref{storing_data}.
+The choice of the database system is more difficult. From the course « Big Data » of Prof. Philipe Cudré-Maudoux we learned that a database system exists for almost every use cases. In our case, we want to be able to save a big amount of data who will grow among the time, to perform statistical queries and be easily accessible from every system. In consequence, we choose \texttt{ElasticSearch} (ES). Disadvantaged and advantages of ES are given in the section \ref{storing_data}.
 
 \subsection{Simulation of the building}
 In the section \ref{intro}, we see that ??? had a hearth attack and we cannot had access to the data. For this reason, we needed to simulate how the building is using and producing energy to have fake data.
@@ -210,35 +218,35 @@ The graphs we choose are as follows:
 Because our data are on a period of 7 years with a granularity of one hour, the user needs to be able to select the period of time he want to visualize the data. To fulfill this goal, the user needs to be able to select the start date and the end data of the data through a calendar.
 
 \subsubsection{Technologies used}
-In the section \ref{approach}, we decided to use Javascript, SVG and HTML5 to do a visual representation of the data. Given that point, we select a Javascript library, called \emph{n3-lines-chart}\cite{n3}, which represent an array of data to a SVG graph. We choose this library for this simplicity of utilisation, the quality of the rendered graphs and the big amount of options available. To simplify the user interaction and to structure well our Javascript, we used a Javascript Framework called \emph{AngularJS}\cite{angular}. Moreover, the library \emph{n3-lines-chart} is designed to fit well with \emph{AngularJS}. \emph{AngularJS} is a Framework which aims to simplify both development and the testing of a Web application. It decouples the view rendering (user interface) to the application business logic with a Model View Controller architecture and by providing a small declarative language which can be used in the HTML pages.
+In the section \ref{approach}, we decided to use \texttt{Javascript}, \texttt{SVG} and \texttt{HTML5} to do a visual representation of the data. Given that point, we select a Javascript library, called \texttt{n3-lines-chart}\cite{n3}, which represent an array of data to a SVG graph. We choose this library for this simplicity of utilisation, the quality of the rendered graphs and the big amount of options available. To simplify the user interaction and to structure well our Javascript, we used a Javascript Framework called \texttt{AngularJS}\cite{angular}. Moreover, the library \texttt{n3-lines-chart} is designed to fit well with \texttt{AngularJS}. \texttt{AngularJS} is a Framework which aims to simplify both development and the testing of a Web application. It decouples the view rendering (user interface) to the application business logic with a Model View Controller architecture and by providing a small declarative language which can be used in the HTML pages.
 
 Building a user interface in HTML/CSS/Javascript from scratch requires times and diverse competences in programming and design. To simplify our work, we used a HTML, CSS, Javascript Framework called Bootstrap. Bootstrap provides default styled elements (buttons, links, formular, etc), icons, typography and components. For example, Bootstrap provides navbar, dropdown and modal components.
 
-For communicating with ES we used a small Javascript library, developed by ElasticSearch team \cite{es_javascript}, which simplify the communication and encode/decode JSON to Javascript objects. Though ES is accessible through AJAX requests, the Javascript ElasticSearch library simplify the development
+For communicating with ES we used a small Javascript library, developed by \texttt{ElasticSearch} team \cite{es_javascript}, which simplify the communication and encode/decode \texttt{JSON} to Javascript objects. Though ES is accessible through \texttt{AJAX} requests, the \texttt{Javascript ElasticSearch} library simplify the development
 
 We used as well two other utility library:
 \begin{itemize}
-\item \emph{jQuery}\cite{jquery}, because it is required by Bootstrap and provides some useful functions
-\item \emph{moment}\cite{moment}, to manipulate the dates and times
+\item \texttt{jQuery}\cite{jquery}, because it is required by Bootstrap and provides some useful functions
+\item \texttt{moment}\cite{moment}, to manipulate the dates and times
 \end{itemize}
 
-For developing we used Brackets as code editor, bower to manage Javascript and CSS libraries and GruntJS to simplify development task, such as:
+For developing we used Brackets as code editor, \texttt{Bower} to manage Javascript and CSS libraries and \texttt{GruntJS} to simplify development task, such as:
 \begin{itemize}
- \item Providing a basic HTTP server 
+ \item Providing a basic \texttt{HTTP} server 
  \item Live reloading the browser when a HTML, CSS or JavaScript file is changed
 \end{itemize}
 
 \subsubsection{Low-pass Gaussian filter}
-When we represent data, especially weather data, the user is not interested by the extrema of the data by the continuity and the change of the data. Typically, to know that at 6am the temperature is 2\degree C is not relevant but to see that the temperature is going down during the night, at 6am the temperature is at is lowest and is growing up during the day is more interesting. For that a low-pass gaussian filter can be used to show a continuity over the data. The advantages of a low-pass Gaussian filter against a moving average is that data are closer to what they are with a better continuity [citation].
+When we represent data, especially weather data, the user is not interested by the extrema of the data by the continuity and the change of the data. Typically, to know that at 6am the temperature is 2\degree C is not relevant but to see that the temperature is going down during the night, at 6am the temperature is at is lowest and is growing up during the day is more interesting. For that a low-pass Gaussian filter can be used to show a continuity over the data. The advantages of a low-pass Gaussian filter against a moving average is that data are closer to what they are with a better continuity [citation].
 
 The principle of a Gaussian low-pass filter is simple. Given a central value, we take a k number of value at the left of the central value and a k number of value at the right of the central value. After that, we weight the all selected value following the rule:  As most a value is far from the central value as more is multiple value is low. Finally we addition all the value to have the new value of the central value.
 
 For these reasons, we implemented a low-pass Gaussian filter for our project. We the help of the book[xxx], the implementation is easy and is done in a couple of minutes. But all the art is to choose the correct Gaussian scale. If we take a huge Gaussian scale, the curve will be flat and if we take a small Gaussian scale it will change nothing. In our project, the number of data change depending if the user choose to represent the data of one day or of one year. For that we implemented different Gaussian scale and we let the user choose is more appropriate scale. 
 
 \subsubsection{Implementation}
-For the implementation, the main work is to write the correct query to \emph{ElasticSearch}. Indeed, the user interface is simple and Bootstrap do quite all the work. Drawing the graphs is done by the \emph{n3-line-charts} library and interacting with the user is simplified a lot by \emph{AngularJS}.
+For the implementation, the main work is to write the correct query to \texttt{ElasticSearch}. Indeed, the user interface is simple and Bootstrap do quite all the work. Drawing the graphs is done by the \texttt{n3-line-charts} library and interacting with the user is simplified a lot by \texttt{AngularJS}.
 
-For writing the \emph{ES} query, we need to take in account that a big amount of data could be returned. To avoid that, we need to group our data over a certain period of time and to do an average of the data in the period of time. We defined four period of time:
+For writing the \texttt{ES} query, we need to take in account that a big amount of data could be returned. To avoid that, we need to group our data over a certain period of time and to do an average of the data in the period of time. We defined four period of time:
 \begin{itemize}
 \item One hour
 \item Six hour
@@ -249,7 +257,7 @@ For writing the \emph{ES} query, we need to take in account that a big amount of
 Depending of which period of time the user select, we try to choose the defined period of time which will output more or less 500 data. By experimentation, we defined that 500 hundred data was a optimal number of data to represent.
 
 Finally, the listing\ref{es_request} show a typical request to ES at the URL:\\
-\emph{GET \url{http://localhost:9200/pervasive/data/_search?size=500}}
+\texttt{GET \url{http://localhost:9200/pervasive/data/_search?size=500}}
 
 \lstinputlisting[language={JavaScript}, caption={A typical ElasticSearch request to gather data for our graphs}, label={es_request}]{es.js}
 

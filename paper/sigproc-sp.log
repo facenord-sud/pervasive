@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.3.22)  21 MAY 2015 16:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.3.22)  22 MAY 2015 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,21 +475,44 @@ Overfull \hbox (1.26794pt too wide) in paragraph at lines 85--86
  []
 
 
-Overfull \hbox (6.30788pt too wide) in paragraph at lines 118--119
-[]\T1/aer/m/n/9 Manage that ev-ery per-son with a screen ter-mi-nal (smart-
+Overfull \hbox (7.79285pt too wide) in paragraph at lines 120--121
+[]\T1/aer/m/n/9 Manage that ev-ery per-son with a screen ter-mi-nal (Smart-
  []
 
 [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
+Package epstopdf Info: Source file: <graph.eps>
+(epstopdf)                    date: 2015-05-22 14:25:59
+(epstopdf)                    size: 98384 bytes
+(epstopdf)             Output file: <graph-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-05-22 14:26:07
+(epstopdf)                    size: 23109 bytes
+(epstopdf)             Command: <repstopdf --outfile=graph-eps-converted-to.pdf
+ graph.eps>
+(epstopdf)             \includegraphics on input line 138.
+Package epstopdf Info: Output file is already uptodate.
 
-LaTeX Warning: Reference `intro' on page \thepage  undefined on input line 141.
+<graph-eps-converted-to.pdf, id=83, 242.9075pt x 250.9375pt>
+File: graph-eps-converted-to.pdf Graphic file (type pdf)
 
+<use graph-eps-converted-to.pdf>
+Package pdftex.def Info: graph-eps-converted-to.pdf used on input line 138.
+(pdftex.def)             Requested size: 242.90689pt x 250.93687pt.
 
+Overfull \hbox (2.90689pt too wide) in paragraph at lines 138--139
+[][] 
+ []
 
-LaTeX Warning: Citation `agroscope' on page \thepage  undefined on input line 1
-45.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 144.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+)
+
+LaTeX Warning: Reference `intro' on page \thepage  undefined on input line 149.
+
 
 Missing character: There is no Â in font cmr9!
 Missing character: There is no ° in font cmr9!
@@ -497,173 +520,89 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.169 H
-       ow we simulated the energy consumption is complicated: [2]
-Overfull \hbox (1.99698pt too wide) in paragraph at lines 174--175
+l.166 \item W
+             ater bought to complete the capacity of the toilet water tank w...
+[2 <./graph-eps-converted-to.pdf>]
+Overfull \hbox (1.99698pt too wide) in paragraph at lines 182--183
 []\T1/aer/m/n/9 We de-fined a lin-ear func-tion which de-ter-mine how much
  []
 
 
-LaTeX Warning: Citation `Fielding2000' on page \thepage  undefined on input lin
-e 184.
-
-
-LaTeX Warning: Citation `json' on page \thepage  undefined on input line 184.
-
-
-LaTeX Warning: Citation `es_agg' on page \thepage  undefined on input line 189.
-
-
-
-LaTeX Warning: Reference `intro' on page \thepage  undefined on input line 201.
+LaTeX Warning: Reference `intro' on page \thepage  undefined on input line 209.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.208 \end{enumerate}
-                      [3]
-
-LaTeX Warning: Citation `n3' on page \thepage  undefined on input line 213.
-
-
-LaTeX Warning: Citation `angular' on page \thepage  undefined on input line 213
-.
-
-
-LaTeX Warning: Citation `es_javascript' on page \thepage  undefined on input li
-ne 217.
-
-
-LaTeX Warning: Citation `jquery' on page \thepage  undefined on input line 221.
-
-
-
-LaTeX Warning: Citation `moment' on page \thepage  undefined on input line 222.
-
-
-LaTeX Font Info:    Try loading font information for T1+aett on input line 252.
-
-(/usr/local/texlive/2014/texmf-dist/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-Overfull \hbox (5.50032pt too wide) in paragraph at lines 251--253
-\T1/aer/m/it/9 GET []$\T1/aett/m/it/9 http : / / localhost : 9200 / pervasive /
- data / _search ?
+l.210 
+       [3]pdfTeX warning (ext4): destination with the same identifier (name{pag
+e.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.248 
+       [4]
+Overfull \hbox (14.66006pt too wide) in paragraph at lines 259--261
+\T1/aett/m/n/9 GET []$http : / / localhost : 9200 / pervasive / data / _search 
+? size =
  []
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 254.
-(./es.jspdfTeX warning (ext4): destination with the same identifier (name{page.
-}) has been already used, duplicate ignored
+nput line 262.
+(./es.js)pdfTeX warning (ext4): destination with the same identifier (name{page
+.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5       interval:
-                    "6H" [4])
-Underfull \vbox (badness 1558) has occurred while \output is active []
+l.279 
+       [5] (./sigproc-sp.bbl
+Overfull \hbox (30.90685pt too wide) in paragraph at lines 12--15
+\T1/aett/m/n/9 search-[]aggregations-[]metrics-[]extendedstats-[]aggregation . 
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.282 
-       [5]
-No file sigproc-sp.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 307.
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.307 \end{document}
-                     [6
+ []
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 307.
+)pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.313 \balancecolumns
+                      [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 315.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 315.
  (./sigproc-sp.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 307.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 307.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 315.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 315.
+Package rerunfilecheck Info: File `sigproc-sp.out' has not changed.
+(rerunfilecheck)             Checksum: 4EE0C1EC66BFA7A700EF263BFA97A1E6;866.
 
-
-Package rerunfilecheck Warning: File `sigproc-sp.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `sigproc-sp.out':
-(rerunfilecheck)             Before: 500A19D372B2A37B2D7360846BEC6E58;1786
-(rerunfilecheck)             After:  8CDCF84C5DC944B2A538A58C9B7FBDD0;820.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 8674 strings out of 493117
- 123447 string characters out of 6135433
- 296025 words of memory out of 5000000
- 11892 multiletter control sequences out of 15000+600000
- 50941 words of font info for 71 fonts, out of 8000000 for 9000
+ 8666 strings out of 493117
+ 123293 string characters out of 6135433
+ 298345 words of memory out of 5000000
+ 11886 multiletter control sequences out of 15000+600000
+ 50093 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,40p,976b,1839s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{appendix.B} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.6} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.5} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.4} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.3} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.A.2.6} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.A.2.5} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.A.2.4} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.A.2.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.A.2.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.A.2.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.A.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{appendix.A} has been referenced but does not exist,
- replaced by a fixed one
-
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/20
-14/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2014/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2014/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2014/texmf-di
-st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2014/texmf-dist/font
-s/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
-/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times
-/utmri8a.pfb>
-Output written on sigproc-sp.pdf (6 pages, 175408 bytes).
+ 41i,11n,40p,1013b,1480s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
+2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/201
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2014/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2014/texmf-dist/fo
+nts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
+e1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/tim
+es/utmri8a.pfb>
+Output written on sigproc-sp.pdf (6 pages, 196099 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 278 compressed objects within 3 object streams
- 108 named destinations out of 1000 (max. 500000)
- 217 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 293 PDF objects out of 1000 (max. 8388607)
+ 264 compressed objects within 3 object streams
+ 105 named destinations out of 1000 (max. 500000)
+ 118 words of extra memory for PDF output out of 10000 (max. 10000000)
 

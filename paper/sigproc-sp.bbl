@@ -1,0 +1,43 @@
+\begin{thebibliography}{1}
+
+\bibitem{agroscope}
+{Donn{\'e}es m{\'e}t{\'e}orologiques | Agrometeo, Project Website}.
+\newblock \url{http://www.agrometeo.ch/fr/meteorology/datas}.
+
+\bibitem{angular}
+{AngularJS Javascript Framework Project Website}.
+\newblock \url{https://angularjs.org}.
+
+\bibitem{es_agg}
+{Extended Stats Aggregation, Project Website}.
+\newblock
+  \url{https://www.elastic.co/guide/en/elasticsearch/reference/1.x/search-aggregations-metrics-extendedstats-aggregation.html}.
+
+\bibitem{es_javascript}
+{ElasticSearch Javascript Library Project Website}.
+\newblock
+  \url{https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html}.
+
+\bibitem{Fielding2000}
+R.~Fielding.
+\newblock {\em Architectural Styles and the Design of Network-based Software
+  Architectures}.
+\newblock PhD thesis, University of California, Irvine, 2000.
+
+\bibitem{jquery}
+{jQuery Javascript library Project Website}.
+\newblock \url{http://jquery.com}.
+
+\bibitem{json}
+{JSON, Project Website}.
+\newblock \url{http://www.json.org/}.
+
+\bibitem{moment}
+{Moment Javascript library, date manipulation Project Website}.
+\newblock \url{http://momentjs.com}.
+
+\bibitem{n3}
+{n3 line charts Javascript library Project Website}.
+\newblock \url{http://n3-charts.github.io/line-chart/#/}.
+
+\end{thebibliography}
