@@ -1,6 +1,15 @@
-## R
+# FSO - Energy survey
 
-Commandes utiles:
+## Usage
+1. Clone this repo
+2. install [npm](https://docs.npmjs.com/cli/install) and
+   [grunt](http://gruntjs.com/installing-grunt)
+3. Install
+   [elasticsearch](https://www.elastic.co/guide/en/elasticsearch/guide/current/_installing_elasticsearch.html) and start it
+4. Run `bundle &&  rake generate:es`
+3. Run `npm install`
+4. Run `grunt serve` and visit http://localhost:4567
 
-* Transformation de la date: `int$date = as.POSIXct(strptime(int$date, format="%Y-%m-%dT%H:00:00"))`
-* lire un CSV: `int <- read.csv("/Users/leo/Documents/uni/master/pervasive/project/datas/r/temp_int.csv", sep=",", header=TRUE, as.is=TRUE)`
+## Questions?
+
+Post an issue or contact me by e-mail
